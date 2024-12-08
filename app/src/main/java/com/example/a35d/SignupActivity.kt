@@ -37,6 +37,8 @@ class SignupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView)
         date = findViewById(R.id.editTextDate)
 
+        date.isClickable = true
+        date.isFocusable = false
         date.setOnClickListener {
             loadCalendar()
         }
@@ -81,7 +83,7 @@ class SignupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             DatePickerDialog.OnDateSetListener
             { datePicker, year, month, day ->
                         //2023   5    10
-                date.setText("$year/$month/$day")
+                date.setText("$year/${month+1}/$day")
             },year,month,day
         )
         dialog.show()
