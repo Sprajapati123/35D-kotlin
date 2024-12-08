@@ -1,10 +1,10 @@
-
 package com.example.a35d
 
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -12,14 +12,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class SignupActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
+class SignupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var spinner: Spinner
     lateinit var textView: TextView
+    lateinit var autoCompleteTextView: AutoCompleteTextView
 
     var countries = arrayOf(
-        "Nepal","China","Bhutan","Pakistan",
-        "Canada","Australia","India"
+        "Nepal", "China", "Bhutan", "Pakistan",
+        "Canada", "Australia", "India"
     )
+
+    var cities = arrayOf("Kathmandu", "Bhaktapur",
+        "Lalitpur", "kritipur","kanchanpur")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +31,26 @@ class SignupActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
         setContentView(R.layout.activity_signup)
         spinner = findViewById(R.id.spinner)
         textView = findViewById(R.id.displaySpinner)
+        autoCompleteTextView = findViewById(R.id.autoCompleteTextView)
+
+        val autoAdapter = ArrayAdapter(
+            this@SignupActivity,
+            android.R.layout.simple_list_item_1,
+            cities
+        )
+        autoCompleteTextView.setAdapter(autoAdapter)
+        autoCompleteTextView.threshold = 2
 
         val adapter = ArrayAdapter(
             this@SignupActivity,
             android.R.layout.simple_list_item_1,
             countries
         )
+
+
         adapter.setDropDownViewResource(
-            android.R.layout.simple_dropdown_item_1line)
+            android.R.layout.simple_dropdown_item_1line
+        )
 
         spinner.adapter = adapter
         spinner.onItemSelectedListener = this
@@ -47,7 +63,7 @@ class SignupActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        if(parent != null){
+        if (parent != null) {
             textView.text =
                 parent.getItemAtPosition(position).toString()
 

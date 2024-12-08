@@ -25,4 +25,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="You have selected: " />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cities" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter city" />
 </LinearLayout>
