@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a35d.adapter.FruitsAdapter
@@ -44,7 +45,15 @@ class FruitsActivity : AppCompatActivity() {
 
         recyclerView.adapter =  fruitsAdapter
 
-        recyclerView.layoutManager = LinearLayoutManager(this@FruitsActivity)
+        recyclerView.layoutManager = LinearLayoutManager(
+            this@FruitsActivity,
+            LinearLayoutManager.HORIZONTAL,
+            false)
+
+//        recyclerView.layoutManager = GridLayoutManager(
+//            this@FruitsActivity,
+//            2
+//        )
 
 
 
