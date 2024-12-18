@@ -19,12 +19,26 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnLogin.setOnClickListener {
-            val intent = Intent(
-                this@LoginActivity,
-                FruitsActivity::class.java
-            )
-            startActivity(intent)
-            finish()
+            val username : String = binding.editUsername.text.toString()
+            val password : String = binding.editPassword.text.toString()
+
+            if(username.isEmpty()){
+                binding.editUsername.error = "username can't be empty"
+            }else if(password.isEmpty()){
+                binding.editPassword.error = "password can't be empty"
+            }else{
+                val intent = Intent(
+                    this@LoginActivity,
+                    DestinationActivity::class.java
+                )
+                intent.putExtra("ndjibadka",username)
+                intent.putExtra("password",password)
+
+                startActivity(intent)
+                finish()
+            }
+
+
         }
 
 
