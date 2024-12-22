@@ -1,6 +1,8 @@
 package com.example.a35d
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -11,12 +13,18 @@ import com.example.a35d.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = getSharedPreferences("user",
+                                                Context.MODE_PRIVATE)
+
+
 
         binding.btnLogin.setOnClickListener {
             val username : String = binding.editUsername.text.toString()
@@ -27,6 +35,15 @@ class LoginActivity : AppCompatActivity() {
             }else if(password.isEmpty()){
                 binding.editPassword.error = "password can't be empty"
             }else{
+                if(binding.rememberMe.isChecked){
+                    val editor = sharedPreferences.edit()
+
+                    editor.putString("username",username)
+                    editor.putString("password",password)
+
+
+                    editor.apply()
+                }
                 val intent = Intent(
                     this@LoginActivity,
                     DestinationActivity::class.java
