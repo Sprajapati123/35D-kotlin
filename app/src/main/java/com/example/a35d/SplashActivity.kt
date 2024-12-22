@@ -38,7 +38,6 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-
         },3000)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
