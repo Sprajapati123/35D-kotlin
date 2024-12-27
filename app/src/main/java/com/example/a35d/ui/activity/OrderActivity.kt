@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.a35d.R
+import com.example.a35d.adapter.TabAdapter
+import com.example.a35d.databinding.ActivityOrderBinding
 
 class OrderActivity : AppCompatActivity() {
 
@@ -29,10 +31,30 @@ class OrderActivity : AppCompatActivity() {
         Log.d("lifecycle","OnDestroy -> I am called")
         super.onDestroy()
     }
+
+    lateinit var binding: ActivityOrderBinding
+
+    //if tab ko header ma icon rakne bhaye
+    var icons = arrayOf(
+        R.drawable.baseline_notifications_24,
+        R.drawable.baseline_home_24,
+        R.drawable.baseline_person_24,
+    )
+    //if tab ko header ma text rakne bhaye
+    var data = arrayOf(
+        "Active Order",
+        "Cancelled Order",
+        "Delivered Order",
+    )
+
+    lateinit var adapter: TabAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_order)
+        binding = ActivityOrderBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 
         Log.d("lifecycle","onCreate -> I am called")
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
