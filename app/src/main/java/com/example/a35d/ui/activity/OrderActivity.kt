@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.FragmentManager
 import com.example.a35d.R
 import com.example.a35d.adapter.TabAdapter
 import com.example.a35d.databinding.ActivityOrderBinding
@@ -54,6 +55,11 @@ class OrderActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val fragmentManager : FragmentManager = supportFragmentManager
+
+        adapter = TabAdapter(fragmentManager,lifecycle)
+        binding.viewPager.adapter = adapter
 
 
         Log.d("lifecycle","onCreate -> I am called")
