@@ -18,8 +18,8 @@ class TabAdapter(
     override fun createFragment(position: Int): Fragment {
         when(position){
             0 -> return ActiveFragment()
-            1 -> return DeliveredFragment()
-            2 -> return CancelledFragment()
+            1 -> return CancelledFragment()
+            2 -> return DeliveredFragment()
             else -> return ActiveFragment()
         }
     }

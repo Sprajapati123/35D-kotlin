@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.a35d.R
 import com.example.a35d.adapter.TabAdapter
 import com.example.a35d.databinding.ActivityOrderBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class OrderActivity : AppCompatActivity() {
 
@@ -61,6 +62,11 @@ class OrderActivity : AppCompatActivity() {
         adapter = TabAdapter(fragmentManager,lifecycle)
         binding.viewPager.adapter = adapter
 
+        TabLayoutMediator(binding.tabLayout,binding.viewPager){
+//            tabs,position -> tabs.text = data[position]
+            tabs,position ->
+            tabs.icon = resources.getDrawable(icons[position],null)
+        }.attach()
 
         Log.d("lifecycle","onCreate -> I am called")
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
