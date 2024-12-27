@@ -63,9 +63,11 @@ class OrderActivity : AppCompatActivity() {
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout,binding.viewPager){
-//            tabs,position -> tabs.text = data[position]
-            tabs,position ->
-            tabs.icon = resources.getDrawable(icons[position],null)
+           //if text
+            tabs,position -> tabs.text = data[position]
+            //if icon
+//            tabs,position ->
+//            tabs.icon = resources.getDrawable(icons[position],null)
         }.attach()
 
         Log.d("lifecycle","onCreate -> I am called")
