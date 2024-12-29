@@ -33,7 +33,6 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         replaceFragment(HomeFragment())
-
         binding.bottomNavigationView.setOnItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.navHome -> replaceFragment(HomeFragment())
